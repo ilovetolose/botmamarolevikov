@@ -6,7 +6,9 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.markdown import hide_link
 from aiogram.types import ChatMemberAdministrator
 from aiogram.dispatcher.filters import Command
-# import aiogram.methods.set_chat_administrator_custom_title
+import time
+from aiogram.utils.markdown import link
+OSKORBLYA = ['всеволод лох','всеволод чмо','всеволод даун','компьютер']
 
 
 
@@ -16,6 +18,27 @@ from aiogram.dispatcher.filters import Command
 API_TOKEN = '6123767585:AAFct5eGVw2vZC_iJ_FhoQ17yObdw-nJbTI'
 bot = Bot(token=API_TOKEN,parse_mode="html")
 dp = Dispatcher(bot)
+@dp.message_handler(regexp='рофл')
+async def joke(message: types.Message):
+    await message.answer('что такое рофл??? я знаю только шутки из смешной группы вконтакте')
+    time.sleep(3)
+    await bot.send_message(message.chat.id, text=(link('ПРИКОЛЫБЕСПЛАНТОРЖАКАХАХАХХА','https://vk.com/channehumor')), parse_mode='Markdown',disable_web_page_preview=True)
+
+
+
+
+@dp.message_handler(text=OSKORBLYA)
+async def rude(message: types.Message):
+    await message.answer('сам такой(( хнык...')
+    time.sleep(1)
+    await message.answer('ОТСТАНЬ ОТ МЕНЯ((')
+    await message.bot.kick_chat_member(message.from_user.id,30,False)
+
+
+
+
+
+
 
 
 @dp.message_handler(commands=['btn'])
@@ -54,18 +77,16 @@ async def coommands(message: types.Message, command):
         photo = ['negros.jpg', 'raby.jpg']
         with open(photo[rand], 'rb') as photo:
             await message.reply_photo(photo, caption=kb[rand])
-
-
-
+    elif command.args == 'tooth':
+        with open('tooth.jpg', 'rb') as photo:
+            await message.reply_photo(photo, caption='смотри.....')
 
 
 
 @dp.message_handler(commands=['commandlist'])
 async def comm(message: types.Message,command):
     await message.reply('ПЕРВАЯ команда: расскажи анекдот, чтобы всеволод рассказал анекдот напиши команду "/commands kek" \n '
-                        'ВТОРАЯ команда')
-
-
+                        'ВТОРАЯ команда: всеволод покажи зуб, чтобы всеволод показал зуб введи команду "/commands tooth"\n')
 
 
 
