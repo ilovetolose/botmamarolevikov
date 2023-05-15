@@ -40,20 +40,16 @@ async def coommands(message: types.Message, command):
                     'Плотность = масса объём ρ = m V , где (m) — масса, (V) — объём']
         await message.reply(smorting[random.randint(0,3)])
 
-
-@dp.message_handler(commands=['commands'])
-async def coommands(message: types.Message, command):
-
-
-
-
 #СПИСОК
 @dp.message_handler(commands=['commandlist'])
-async def comm(message: types.Message,command):
+async def comm(message: types.Message):
     await message.reply('ПЕРВАЯ команда: всеволод расскажи анекдот, чтобы всеволод рассказал анекдот напиши команду "/commands <b>kek</b>" \n '
                         'ВТОРАЯ команда: всеволод покажи зуб, чтобы всеволод показал зуб введи команду "/commands <b>tooth"</b>\n'
                         'ТРЕТЬЯ команда: всеволод скажи че нибудь умное... чтобы всеволод сказал что-то умное введи команду "/commands <b>smort</b>"\n'
-                        'ЧЕТВЕРТАЯ команда: всеволод матемацируй, чтобы всеволод показал свой уровень математики введи команду "commands <b>math</b>\n')
+                        'ЧЕТВЕРТАЯ команда: всеволод матемацируй, чтобы всеволод показал свой уровень математики введи команду "/commands <b>math</b>"\n'
+                        'ПЯТАЯ ЮБИЛЕЙНАЯ!!! команда: всеволод узнай силу тяжести, чтобы всеволод узнал силу твоей тяжести введи команду "/grav" тута число \n'
+
+                        )
 
 
 #РОФЛАНПОМИНКИ
@@ -62,6 +58,27 @@ async def joke(message: types.Message):
     await message.answer('что такое рофл??? я знаю только шутки из смешной группы вконтакте')
     time.sleep(2)
     await bot.send_message(message.chat.id, text=(link('ПРИКОЛЫБЕСПЛАНТОРЖАКАХАХАХХА','https://vk.com/channehumor')), parse_mode='Markdown',disable_web_page_preview=True)
+
+#vfnbtkamfgm
+
+
+@dp.message_handler(commands=['math'])
+async def mathe(message: types.Message, command):
+    if command.args:
+        await message.reply(int(command.args) * int(command.args))
+    else:
+        await message.answer('sosi leg')
+
+
+@dp.message_handler(commands=['grav'])
+async def phys(msg: types.Message, command):
+        if command.args:
+            await msg.reply(float(command.args)*9.8)
+
+
+
+
+
 
 
 #BAN
