@@ -8,7 +8,13 @@ from aiogram.types import ChatMemberAdministrator
 from aiogram.dispatcher.filters import Command
 import time
 from aiogram.utils.markdown import link
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 OSKORBLYA = ['всеволод лох','всеволод чмо','всеволод даун','компьютер',]
+urlkb = InlineKeyboardMarkup(row_width=1)
+urlButton = InlineKeyboardButton(text='Перейти в блог Skillbox', url='https://skillbox.ru/media/code/')
+urlButton2 = InlineKeyboardButton(text='Перейти к курсам Skillbox', url='https://skillbox.ru/code/')
+urlkb.add(urlButton, urlButton2)
+
 
 
 
@@ -20,25 +26,35 @@ bot = Bot(token=API_TOKEN,parse_mode="html")
 dp = Dispatcher(bot)
 
 
+
+
+
+
+
 #ВСЕ КОМАНДЫ
 @dp.message_handler(commands=['commands'])
 async def coommands(message: types.Message, command):
-    if command.args == 'kek':
+    if command.args == 'kek': #АНЕКДОТ
         kb = ['Что надо сказать негру в униформе?\nМне, пожалуйста, бигмак и колу.',
               'Как напугать негра?\nВзять его с собой на аукцион.']
         rand = random.randint(0, 1)
         photo = ['negros.jpg', 'raby.jpg']
         with open(photo[rand], 'rb') as photo:
             await message.reply_photo(photo, caption=kb[rand])
-    elif command.args == 'tooth':
+    elif command.args == 'tooth': #зуб
         with open('tooth.jpg', 'rb') as photo:
             await message.reply_photo(photo, caption='смотри.....')
-    elif command.args == 'smort':
+    elif command.args == 'smort': #УМНЫЙ
         smorting = ['Формула скорости равномерного прямолинейного движения: V = S / t, где S — путь тела, t — время, за которое этот путь пройден',
                     'Площадь треугольника равна половине произведения двух сторон на синус угла между ними.',
                     'Закон Архимеда - на тело, погружённое в жидкость или газ, действует выталкивающая сила, численно равная весу объема жидкости или газа, вытесненного телом.',
                     'Плотность = масса объём ρ = m V , где (m) — масса, (V) — объём']
         await message.reply(smorting[random.randint(0,3)])
+    elif command.args == 'bones': #КОСТИ
+        await message.answer('всеволод кинул '+ str(random.randint(1,6)))
+    elif command.args == 'coin': #МОНЕТА
+        a = ['орел','решка']
+        await message.answer(a[random.randint(0,1)])
 
 #СПИСОК
 @dp.message_handler(commands=['commandlist'])
@@ -48,7 +64,7 @@ async def comm(message: types.Message):
                         'ТРЕТЬЯ команда: всеволод скажи че нибудь умное... чтобы всеволод сказал что-то умное введи команду "/commands <b>smort</b>"\n'
                         'ЧЕТВЕРТАЯ команда: всеволод матемацируй, чтобы всеволод показал свой уровень математики введи команду "/commands <b>math</b>"\n'
                         'ПЯТАЯ ЮБИЛЕЙНАЯ!!! команда: всеволод узнай силу тяжести, чтобы всеволод узнал силу твоей тяжести введи команду "/grav" тута число \n'
-
+                        'ШЕСТАЯ ваз 2106 команда: чтобы всеволод бросил игральные кости введи команду "/commands <b>/bones</b>"'
                         )
 
 
@@ -59,7 +75,7 @@ async def joke(message: types.Message):
     time.sleep(2)
     await bot.send_message(message.chat.id, text=(link('ПРИКОЛЫБЕСПЛАНТОРЖАКАХАХАХХА','https://vk.com/channehumor')), parse_mode='Markdown',disable_web_page_preview=True)
 
-#vfnbtkamfgm
+#vfnbtkamfgm Я ЧМОЛ
 
 
 @dp.message_handler(commands=['math'])
@@ -74,6 +90,23 @@ async def mathe(message: types.Message, command):
 async def phys(msg: types.Message, command):
         if command.args:
             await msg.reply(float(command.args)*9.8)
+
+@dp.message_handler(commands=['pokemon'])
+async def poke(msg: types.Message, command):
+        if command.args == 'овен' and 'Овен':
+            await msg.reply('ты чармандер!!!Покемон огненного типа')
+        elif command.args == 'близнецы'and 'Близнецы':
+            await msg.reply('ты Баттерфи!!!Покемон насекомого типа')
+        elif command.args == 'телец' and 'Телец':
+            await msg.reply('ты СУДОВУДО!!!Покемон каменного типа')
+        elif command.args == 'рак' and 'Рак':
+            await msg.reply('ты Мисдривус!!!Покемон призрачного типа')
+        elif command.args == 'лев' and 'Лев':
+            await msg.reply('ты ПИКАчу!!!Покемон грузинского типа')
+        elif command.args == '' and '':
+            await msg.reply('')
+
+
 
 
 
@@ -95,9 +128,13 @@ async def rude(message: types.Message):
 async def send_welcome(message: types.Message):
     btn = types.KeyboardButton(text="a")
     markup = types.ReplyKeyboardMarkup(row_width=0.5)
-    markup.add(btn)
     text = f'я му, {message.from_user.first_name}'
     await message.answer(text, reply_markup=markup)
+    markup = types.ReplyKeyboardRemove()
+    return await bot.send_message(message.from_user.id, 'text', markup=markup)
+
+
+
 
 
 #АНЕКДОТ(ОЛД)
