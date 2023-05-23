@@ -82,8 +82,10 @@ async def joke(message: types.Message):
 async def mathe(message: types.Message, command):
     if command.args:
         await message.reply(int(command.args) * int(command.args))
+        return
     else:
         await message.answer('sosi leg')
+
 
 
 @dp.message_handler(commands=['grav'])
@@ -103,13 +105,20 @@ async def poke(msg: types.Message, command):
             await msg.reply('ты Мисдривус!!!Покемон призрачного типа')
         elif command.args == 'лев' and 'Лев':
             await msg.reply('ты ПИКАчу!!!Покемон грузинского типа')
-        elif command.args == '' and '':
-            await msg.reply('')
-
-
-
-
-
+        elif command.args == 'дева' and 'Дева':
+            await msg.reply('ты КЛИНК(клинкз)!!!Покемон стального типа')
+        elif command.args == 'весы' and 'Весы':
+            await msg.reply('ты ТАНГЕЛА ЧОО ТАНГО??Покемон травяного типа')
+        elif command.args == 'скорпион' and 'Скорпион':
+            await msg.reply('ты сквиртл...Покемон водного типа')
+        elif command.args == 'стрелец' and 'Стрелец':
+            await msg.reply('ты Корвиксар!!Покемон летающего типа')
+        elif command.args == 'козерог' and 'Козерог':
+            await msg.reply('ты Манки(фанкиманкиколахд)Покемон боевого типа')
+        elif command.args == 'водолей' and 'Водолей':
+            await msg.reply('ты ИВИ(кинотеатр?хд)Покемон нормального типа')
+        elif command.args == 'рыбы' and 'Рыбы':
+            await msg.reply('ты слоупок(хахахачзх?!)Покемон психического типа')
 
 
 
