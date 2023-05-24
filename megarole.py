@@ -9,7 +9,7 @@ from aiogram.dispatcher.filters import Command
 import time
 from aiogram.utils.markdown import link
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-OSKOR = ['всеволод лох','всеволод чмо','всеволод даун','компьютер','клоун','дебил']
+OSKOR = ['всеволод лох','всеволод дубина','всеволод дурак','компьютер','клоун','дебил']
 
 
 
@@ -22,8 +22,13 @@ bot = Bot(token=API_TOKEN,parse_mode="html")
 dp = Dispatcher(bot)
 
 
-
-
+@dp.message_handler(commands=['start'])
+async def start(message: types.Message, command):
+    await message.reply('Vsevolod - это телеграмм бот, который знает многое о физике и покемонах. Он может решать простые физические задачи и поделиться интересными фактами о покемонах. Кроме того, он может развлечь людей в чате с помощью игр и шуток, а также узнать, какой покемон подходит тебе по знаку зодиака. Общайтесь с Vsevolodом, чтобы разнообразить свои чаты в Телеграмме!\n'
+                        'чтобы узнать что я умею введи команду "/commandlist"')
+    time.sleep(1)
+    with open('6X8TAhIZy6c.jpg', 'rb') as photo:
+        await message.reply_photo(photo)
 
 
 
@@ -31,8 +36,8 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['commands'])
 async def coommands(message: types.Message, command):
     if command.args == 'kek': #АНЕКДОТ
-        kb = ['Что надо сказать негру в униформе?\nМне, пожалуйста, бигмак и колу.',
-              'Как напугать негра?\nВзять его с собой на аукцион.']
+        kb = ['Что надо сказать темнокожему в униформе?\nМне, пожалуйста, бигмак и колу.',
+              'Как напугать темнокожего?\nВзять его с собой на аукцион.']
         rand = random.randint(0, 1)
         photo = ['negros.jpg', 'raby.jpg']
         with open(photo[rand], 'rb') as photo:
@@ -55,18 +60,19 @@ async def coommands(message: types.Message, command):
 #СПИСОК
 @dp.message_handler(commands=['commandlist'])
 async def comm(message: types.Message):
-    await message.reply('ПЕРВАЯ команда: всеволод расскажи анекдот, чтобы всеволод рассказал анекдот введите команду "/commands <b>kek</b>" \n '
+    await message.reply('ПЕРВАЯ главная команда покемонолога: чтобы всеволод узнал вашего покемона по знаку зодиака введите команду "/pokemon"\n'
                         'ВТОРАЯ команда: всеволод покажи зуб, чтобы всеволод показал зуб введите команду "/commands <b>tooth"</b>\n'
-                        'ТРЕТЬЯ команда: всеволод скажи че нибудь умное... чтобы всеволод сказал что-то умное введите команду "/commands <b>smort</b>"\n'
+                        'ТРЕТЬЯ команда: всеволод скажи что нибудь умное... чтобы всеволод сказал что-то умное введите команду "/commands <b>smort</b>"\n'
                         'ЧЕТВЕРТАЯ команда: всеволод матемацируй, чтобы всеволод показал свой уровень математики введите команду "/commands <b>math</b>"\n'
                         'ПЯТАЯ ЮБИЛЕЙНАЯ!!! команда: всеволод узнай силу тяжести, чтобы всеволод узнал силу твоей тяжести введите команду "/grav" ваша масса \n'
                         'ШЕСТАЯ ваз 2106 команда: чтобы всеволод бросил игральные кости введите команду "/commands <b>/bones</b>"\n'
                         'СЕДЬМАЯ команда: чтобы всеволод подбросил монетку введите команду"/commands <b>/coin</b>"\n'
-                        'ВОСЬМАЯ главная команда покемонолога: чтобы всеволод узнал вашего покемона по знаку зодиака введите команду "/pokemon"\n'
-                        'ДЕВЯТАЯ вишневая команда: чтобы всеволод узнал скорость машины(вашу) в час введите команду "/speed" и путь в метрах который вы преодолели за 5 минут\n'
+                        'ВОСЬМАЯ команда: всеволод расскажи анекдот, чтобы всеволод рассказал анекдот введите команду "/commands <b>kek</b>" \n '
+                        'ДЕВЯТАЯ вишневая команда: чтобы всеволод узнал скорость машины(меня) в час введите команду "/speed" и путь в метрах который вы преодолели за 5 минут\n'
                         )
 
-
+'ВОСЬМАЯ главная команда покемонолога: чтобы всеволод узнал вашего покемона по знаку зодиака введите команду "/pokemon"\n'
+'ПЕРВАЯ команда: всеволод расскажи анекдот, чтобы всеволод рассказал анекдот введите команду "/commands <b>kek</b>" \n '
 #РОФЛАНПОМИНКИ
 @dp.message_handler(regexp='рофл')
 async def joke(message: types.Message):
@@ -83,7 +89,7 @@ async def mathe(message: types.Message, command):
         await message.reply(int(command.args) * int(command.args))
         return
     else:
-        await message.answer('sosi leg')
+        await message.answer('sleg')
 
 @dp.message_handler(commands=['speed'])
 async def sp(msg: types.Message, command):
@@ -103,66 +109,66 @@ async def poke(msg: types.Message, command):
                 await msg.reply_photo(photo, caption='ты чармандер!!!Покемон огненного типа')
 
         elif command.args == 'близнецы'and 'Близнецы':
-            with open('char.jpg','rb') as photo:
+            with open('but.png','rb') as photo:
                 await msg.reply_photo(photo, caption='ты Баттерфи!!!Покемон насекомого типа')
 
         elif command.args == 'телец' and 'Телец':
-            with open('char.jpg','rb') as photo:
+            with open('sudo.jfif','rb') as photo:
                 await msg.reply_photo(photo, caption='ты СУДОВУДО!!!Покемон каменного типа')
 
 
 
 
         elif command.args == 'рак' and 'Рак':
-            with open('char.jpg','rb') as photo:
+            with open('mis.png','rb') as photo:
                 await msg.reply_photo(photo, caption='ты Мисдривус!!!Покемон призрачного типа')
 
 
 
         elif command.args == 'лев' and 'Лев':
-            with open('char.jpg','rb') as photo:
+            with open('pika.jpg','rb') as photo:
                 await msg.reply_photo(photo, caption='ты ПИКАчу!!!Покемон грузинского типа')
 
 
 
         elif command.args == 'дева' and 'Дева':
-            with open('char.jpg','rb') as photo:
+            with open('klink.png','rb') as photo:
                 await msg.reply_photo(photo, caption='ты КЛИНК(клинкз)!!!Покемон стального типа')
 
 
 
         elif command.args == 'весы' and 'Весы':
-            with open('char.jpg','rb') as photo:
-                await msg.reply_photo(photo, caption='ты ТАНГЕЛА ЧОО ТАНГО??Покемон травяного типа')
+            with open('spag.png','rb') as photo:
+                await msg.reply_photo(photo, caption='ты ТАНГЕЛА ЧтОО ТАНГО??Покемон травяного типа')
 
 
 
         elif command.args == 'скорпион' and 'Скорпион':
-            with open('char.jpg','rb') as photo:
+            with open('squ.jpg','rb') as photo:
                 await msg.reply_photo(photo, caption='ты сквиртл...Покемон водного типа')
 
 
 
         elif command.args == 'стрелец' and 'Стрелец':
-            with open('char.jpg','rb') as photo:
+            with open('kor','rb') as photo:
                 await msg.reply_photo(photo, caption='ты Корвиксар!!Покемон летающего типа')
 
 
 
         elif command.args == 'козерог' and 'Козерог':
-            with open('char.jpg','rb') as photo:
+            with open('manki.png','rb') as photo:
                 await msg.reply_photo(photo, caption='ты Манки(фанкиманкиколахд)Покемон боевого типа')
 
 
 
         elif command.args == 'водолей' and 'Водолей':
-            with open('char.jpg','rb') as photo:
+            with open('ivi.png','rb') as photo:
                 await msg.reply_photo(photo, caption='ты ИВИ(кинотеатр?хд)Покемон нормального типа')
 
 
 
         elif command.args == 'рыбы' and 'Рыбы':
-            with open('char.jpg','rb') as photo:
+            with open('slow.png','rb') as photo:
                 await msg.reply_photo(photo, caption='ты слоупок(хахахачзх?!)Покемон психического типа')
 
 
