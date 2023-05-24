@@ -9,11 +9,7 @@ from aiogram.dispatcher.filters import Command
 import time
 from aiogram.utils.markdown import link
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-OSKORBLYA = ['всеволод лох','всеволод чмо','всеволод даун','компьютер',]
-urlkb = InlineKeyboardMarkup(row_width=1)
-urlButton = InlineKeyboardButton(text='Перейти в блог Skillbox', url='https://skillbox.ru/media/code/')
-urlButton2 = InlineKeyboardButton(text='Перейти к курсам Skillbox', url='https://skillbox.ru/code/')
-urlkb.add(urlButton, urlButton2)
+OSKOR = ['всеволод лох','всеволод чмо','всеволод даун','компьютер','клоун','дебил']
 
 
 
@@ -59,12 +55,15 @@ async def coommands(message: types.Message, command):
 #СПИСОК
 @dp.message_handler(commands=['commandlist'])
 async def comm(message: types.Message):
-    await message.reply('ПЕРВАЯ команда: всеволод расскажи анекдот, чтобы всеволод рассказал анекдот напиши команду "/commands <b>kek</b>" \n '
-                        'ВТОРАЯ команда: всеволод покажи зуб, чтобы всеволод показал зуб введи команду "/commands <b>tooth"</b>\n'
-                        'ТРЕТЬЯ команда: всеволод скажи че нибудь умное... чтобы всеволод сказал что-то умное введи команду "/commands <b>smort</b>"\n'
-                        'ЧЕТВЕРТАЯ команда: всеволод матемацируй, чтобы всеволод показал свой уровень математики введи команду "/commands <b>math</b>"\n'
-                        'ПЯТАЯ ЮБИЛЕЙНАЯ!!! команда: всеволод узнай силу тяжести, чтобы всеволод узнал силу твоей тяжести введи команду "/grav" тута число \n'
-                        'ШЕСТАЯ ваз 2106 команда: чтобы всеволод бросил игральные кости введи команду "/commands <b>/bones</b>"'
+    await message.reply('ПЕРВАЯ команда: всеволод расскажи анекдот, чтобы всеволод рассказал анекдот введите команду "/commands <b>kek</b>" \n '
+                        'ВТОРАЯ команда: всеволод покажи зуб, чтобы всеволод показал зуб введите команду "/commands <b>tooth"</b>\n'
+                        'ТРЕТЬЯ команда: всеволод скажи че нибудь умное... чтобы всеволод сказал что-то умное введите команду "/commands <b>smort</b>"\n'
+                        'ЧЕТВЕРТАЯ команда: всеволод матемацируй, чтобы всеволод показал свой уровень математики введите команду "/commands <b>math</b>"\n'
+                        'ПЯТАЯ ЮБИЛЕЙНАЯ!!! команда: всеволод узнай силу тяжести, чтобы всеволод узнал силу твоей тяжести введите команду "/grav" ваша масса \n'
+                        'ШЕСТАЯ ваз 2106 команда: чтобы всеволод бросил игральные кости введите команду "/commands <b>/bones</b>"\n'
+                        'СЕДЬМАЯ команда: чтобы всеволод подбросил монетку введите команду"/commands <b>/coin</b>"\n'
+                        'ВОСЬМАЯ главная команда покемонолога: чтобы всеволод узнал вашего покемона по знаку зодиака введите команду "/pokemon"\n'
+                        'ДЕВЯТАЯ вишневая команда: чтобы всеволод узнал скорость машины(вашу) в час введите команду "/speed" и путь в метрах который вы преодолели за 5 минут\n'
                         )
 
 
@@ -75,7 +74,7 @@ async def joke(message: types.Message):
     time.sleep(2)
     await bot.send_message(message.chat.id, text=(link('ПРИКОЛЫБЕСПЛАНТОРЖАКАХАХАХХА','https://vk.com/channehumor')), parse_mode='Markdown',disable_web_page_preview=True)
 
-#vfnbtkamfgm Я ЧМОЛ
+#vfnbtkamfgm Я
 
 
 @dp.message_handler(commands=['math'])
@@ -86,6 +85,10 @@ async def mathe(message: types.Message, command):
     else:
         await message.answer('sosi leg')
 
+@dp.message_handler(commands=['speed'])
+async def sp(msg: types.Message, command):
+        if command.args:
+            await msg.reply((float(command.args)*12)/(1000))
 
 
 @dp.message_handler(commands=['grav'])
@@ -96,35 +99,79 @@ async def phys(msg: types.Message, command):
 @dp.message_handler(commands=['pokemon'])
 async def poke(msg: types.Message, command):
         if command.args == 'овен' and 'Овен':
-            await msg.reply('ты чармандер!!!Покемон огненного типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты чармандер!!!Покемон огненного типа')
+
         elif command.args == 'близнецы'and 'Близнецы':
-            await msg.reply('ты Баттерфи!!!Покемон насекомого типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты Баттерфи!!!Покемон насекомого типа')
+
         elif command.args == 'телец' and 'Телец':
-            await msg.reply('ты СУДОВУДО!!!Покемон каменного типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты СУДОВУДО!!!Покемон каменного типа')
+
+
+
+
         elif command.args == 'рак' and 'Рак':
-            await msg.reply('ты Мисдривус!!!Покемон призрачного типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты Мисдривус!!!Покемон призрачного типа')
+
+
+
         elif command.args == 'лев' and 'Лев':
-            await msg.reply('ты ПИКАчу!!!Покемон грузинского типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты ПИКАчу!!!Покемон грузинского типа')
+
+
+
         elif command.args == 'дева' and 'Дева':
-            await msg.reply('ты КЛИНК(клинкз)!!!Покемон стального типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты КЛИНК(клинкз)!!!Покемон стального типа')
+
+
+
         elif command.args == 'весы' and 'Весы':
-            await msg.reply('ты ТАНГЕЛА ЧОО ТАНГО??Покемон травяного типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты ТАНГЕЛА ЧОО ТАНГО??Покемон травяного типа')
+
+
+
         elif command.args == 'скорпион' and 'Скорпион':
-            await msg.reply('ты сквиртл...Покемон водного типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты сквиртл...Покемон водного типа')
+
+
+
         elif command.args == 'стрелец' and 'Стрелец':
-            await msg.reply('ты Корвиксар!!Покемон летающего типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты Корвиксар!!Покемон летающего типа')
+
+
+
         elif command.args == 'козерог' and 'Козерог':
-            await msg.reply('ты Манки(фанкиманкиколахд)Покемон боевого типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты Манки(фанкиманкиколахд)Покемон боевого типа')
+
+
+
         elif command.args == 'водолей' and 'Водолей':
-            await msg.reply('ты ИВИ(кинотеатр?хд)Покемон нормального типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты ИВИ(кинотеатр?хд)Покемон нормального типа')
+
+
+
         elif command.args == 'рыбы' and 'Рыбы':
-            await msg.reply('ты слоупок(хахахачзх?!)Покемон психического типа')
+            with open('char.jpg','rb') as photo:
+                await msg.reply_photo(photo, caption='ты слоупок(хахахачзх?!)Покемон психического типа')
+
+
 
 
 
 
 #BAN
-@dp.message_handler(text=OSKORBLYA)
+@dp.message_handler(text=OSKOR)
 async def rude(message: types.Message):
     await message.answer('сам такой((...')
     time.sleep(1)
